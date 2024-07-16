@@ -1,0 +1,3 @@
+FROM ./Qwen2-1.5B.Q4_K_M.gguf
+TEMPLATE [INST] {{ .Prompt }} [/INST]
+PARAMETER num_predict 64
