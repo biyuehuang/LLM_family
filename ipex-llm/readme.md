@@ -2,7 +2,7 @@
 
 https://github.com/intel-analytics/ipex-llm/blob/main/docs/mddocs/Overview/install.md
 
-1 运行在MTL iGPU Windows 11
+1 运行在Intel iGPU Windows 11, 比如MTL，ADL，RPL
 ```
 cd C:\Program Files (x86)\Intel\oneAPI
 setvars.bat
