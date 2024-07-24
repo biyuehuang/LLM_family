@@ -60,7 +60,15 @@ BF16是16.51 token/s， 450.1 GB/s HBM带宽。
 
 INT8是29.44 token/s，401 GB/s HBM带宽。
 
-说明不用AMX，反而带宽利用率更高。BF16的处理效率没有FP16高，BF16 with AMX瓶颈在数据读取，不是计算。
+在SNC-4情况下，1 socket 9460跑Llama2-13B 用DDR 4800MT/s，理论最高带宽4.8*8*8=307.2GB/s。
+
+FP16是10 token/s，260 GB/s DDR带宽。
+
+BF16是9.69 token/s，252 GB/s DDR带宽。
+
+说明不用AMX，反而带宽利用率更高。
+
+BF16的处理效率没有FP16高，如果相同的带宽下，BF16 18.49 跟FP16 18.74 接近了，瓶颈在带宽。
 
 基于QUAD mode (SNC disable)的，7B模型偏小并不能完整利用HBM的内存带宽，13B会有更好的结果。HBM SNC4+ 13B带宽可以达到450+ GB/s Per socket。
 
