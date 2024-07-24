@@ -54,9 +54,9 @@ INT8是26.07 token/s，355 GB/s HBM带宽。
 
 在SNC-4情况下，1 socket 9460跑Llama2-13B 
 
-FP16是18.74 token/s，504.2 GB/s HBM带宽。
+FP16是18.74 token/s，504.2 GB/s HBM带宽。7032ms FT
 
-BF16是16.51 token/s， 450.1 GB/s HBM带宽。
+BF16是16.51 token/s， 450.1 GB/s HBM带宽。927ms FT
 
 INT8是29.44 token/s，401 GB/s HBM带宽。
 
