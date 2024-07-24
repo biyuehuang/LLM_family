@@ -36,7 +36,15 @@ bash run_benchmark.sh -s 1 -bs 1 -d w8a8 -kvd int8 -m llama-2-7b -mp /data/Llama
 
 Xeon SPR HBM的 AMX支持BF16和INT8，不支持FP16。从Xeon 6 开始，AMX支持FP16。
 
-在SNC disable（QUAD mode）情况下，1 socket 9460跑Llama2-7B FP16是27 token/s，376 GB/s HBM带宽。BF16是25 token/s， 349 GB/s HBM带宽。INT8是43.7token/s，310.4GB/s HBM带宽。是不是说明不用AMX，反而带宽利用率更高呢？有可能BF16的处理效率没有FP16高，BF16 with AMX瓶颈在计算，而不是数据读取。换成int8，就更能验证结论。
+在SNC disable（QUAD mode）情况下，1 socket 9460跑Llama2-7B 
+
+FP16是27 token/s，376 GB/s HBM带宽。
+
+BF16是25 token/s， 349 GB/s HBM带宽。
+
+INT8是43.7token/s，310.4GB/s HBM带宽。
+
+说明不用AMX，反而带宽利用率更高。BF16的处理效率没有FP16高，BF16 with AMX瓶颈在数据读取，不是计算。
 
 基于QUAD mode (SNC disable)的，7B模型偏小并不能完整利用HBM的内存带宽，13B会有更好的结果。HBM SNC4+ 13B带宽可以达到450+ GB/s Per socket。
 
