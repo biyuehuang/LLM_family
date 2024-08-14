@@ -6,7 +6,6 @@ docker run -itd --net=host --device=/dev/dri -v /opt:/opt -e no_proxy=localhost,
 
 apt-get install jq
 
-
 docker start arc_vllm_server
 
 docker exec -it arc_vllm_server bash
