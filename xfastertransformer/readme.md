@@ -72,3 +72,8 @@ BF16是9.69 token/s，252 GB/s DDR带宽。
 
 基于QUAD mode (SNC disable)的，7B模型偏小并不能完整利用HBM的内存带宽，13B会有更好的结果。HBM SNC4+ 13B带宽可以达到450+ GB/s Per socket。
 
+SPR的MLC实测内存带宽上限是260GB/s, EMR是300GB/s, 跑llm 打个8.5折, 模型多少B约等于多少GB的内存使用, 再乘以数据类型的倍率, int8是一倍, bf16是两倍. 1socket EMR 72B INT8理论生成速度就是 = (300 * 0.85) / (72B * 1) = 3.54 token/s
+
+2 socket 比 1 socket提升1.5~1.8x。通过eRDMA互联，2台比1台提升 1.5~1.8x
+
+内存带宽计算公式，比如 DDR4-2933MT/s的带宽是  2933*8（字节）*8（通道）/1000 = 187 GB/s
