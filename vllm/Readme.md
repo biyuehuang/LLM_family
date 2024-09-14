@@ -22,7 +22,7 @@ nohup ./benchmark_throughput.sh > arc_2card_llama2-13b-int4-ccl.log 2>&1 &
 sudo xpu-smi dump -m 1,2,18,22,26,31,34
 ```
 
-## （2）Run vllm online TP continue batching
+## （2）Run vllm servering online TP continue batching
 
 安装oneapi 2024.1, 然后
 
