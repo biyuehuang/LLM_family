@@ -1,9 +1,12 @@
-2025年
+# 2025年
+
 开源win和linux版本ollama，不需要安装oneapi
+
 https://www.modelscope.cn/models/ipexllm/ollama-ipex-llm
 
-2024年
+# 2024年
 在windows 11 Pro平台验证过，GPU driver 5762。
+
 如果是Linux，请参考：https://github.com/intel-analytics/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_quickstart.md
 
 下载并安装oneAPI 2024.2
