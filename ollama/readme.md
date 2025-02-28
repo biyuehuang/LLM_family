@@ -1,6 +1,6 @@
 # 2025年
 
-intel开源win和linux版本ollama，不需要安装oneapi：https://www.modelscope.cn/models/ipexllm/ollama-ipex-llm
+intel开源win和linux版本ollama，不需要安装oneapi：https://www.modelscope.cn/models/ipexllm/ollama-ipex-llm 或者魔搭社区 https://www.modelscope.cn/models/ipexllm/ollama-ipex-llm/summary
 
 A家开源：https://www.oneue.com/articles/2350.html
 
