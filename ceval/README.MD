@@ -1,5 +1,11 @@
 run ceval
 
+```
+wget https://huggingface.co/datasets/ceval/ceval-exam/resolve/main/ceval-exam.zip
+mkdir data
+mv ceval-exam.zip data
+cd data; unzip ceval-exam.zip
+```
 
 ```
 conda create -n ipex-llm python=3.11 libuv
