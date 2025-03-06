@@ -35,10 +35,12 @@ python eval.py --model_path C:/Users/Lengda/Documents/DeepSeek-R1-Distill-Qwen-7
 ```
 
 framework 2: openvino
+
+download: https://github.com/openvinotoolkit/openvino.genai/blob/master/tools/llm_bench/requirements.txt
 ```
 conda create -n ov python=3.11
 conda activate ov
-pip install -r requirements_ov.txt
+pip install -r requirements.txt
 pip uninstall openvino openvino-tokenizers openvino-genai
 pip install openvino==2025.1.0dev20250228 openvino-tokenizers==2025.1.0dev20250228 openvino-genai==2025.1.0dev20250228 --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/nightly
 pip install thefuzz
