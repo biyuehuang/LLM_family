@@ -29,9 +29,9 @@ pip install thefuzz
 set SYCL_CACHE_PERSISTENT=1 
 set SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=1 
 
-python eval.py --model_path C:/Users/Lengda/Documents/DeepSeek-R1-Distill-Qwen-14B --eval_type validation --device xpu --eval_data_path ./data --qtype sym_int4
+python eval.py --model_path C:/Users/Lengda/Documents/DeepSeek-R1-Distill-Qwen-14B --eval_type validation --device xpu --eval_data_path ./data --qtype sym_int4 --fw ipex
 
-python eval.py --model_path C:/Users/Lengda/Documents/DeepSeek-R1-Distill-Qwen-7B --eval_type validation --device xpu --eval_data_path ./data --qtype sym_int4
+python eval.py --model_path C:/Users/Lengda/Documents/DeepSeek-R1-Distill-Qwen-7B --eval_type validation --device xpu --eval_data_path ./data --qtype sym_int4 --fw ipex
 ```
 
 framework 2: openvino
