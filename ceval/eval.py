@@ -21,10 +21,9 @@ import torch
 import json
 from tqdm import tqdm
 
-from ipex_llm.utils.common.log4Error import invalidInputError
-from evaluators.qwen import QwenEvaluator
-from evaluators.llama import LlamaEvaluator
-from evaluators.chatglm import ChatGLMEvaluator
+from evaluators.deepseek_ov import DeepseekOVEvaluator
+#from evaluators.deepseek_ipex import DeepseekIPEXEvaluator
+#from evaluators.deepseek_ollama import DeepseekOllamaEvaluator
 
 # test-only
 # TASK_NAME_MAPPING = {
@@ -299,7 +298,7 @@ def main(args, evaluator):
             all_answers[subject_name] = answers
         json.dump(all_answers, open('submission.json','w'), ensure_ascii=False, indent=4)
     else:
-        invalidInputError(False,
+        print(
                           "Invalid eval_type, please use validation or test.")
 
 
@@ -310,42 +309,41 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=str, default="xpu")
     parser.add_argument("--eval_data_path", type=str, default="data")
     parser.add_argument("--qtype", type=str, default="sym_int4")
+    parser.add_argument("--fw", type=str, default="ov") ## ["ipex","ov"]
 
     args = parser.parse_args()
 
     # decide the model family
-    model_families = ['llama', 'qwen', 'chatglm']
+    framework_families = ['ov', 'ipex', 'ollama']
 
-    model_family = None
-    for family in model_families:
-        if family in args.model_path.lower():
-            model_family = family
+    if args.fw in framework_families:
+        print("framework is",args.fw)
+    else:
+        assert f"Model {args.model_path}'s evaluator is not implemented"
 
-    assert model_family is not None, f"Model {args.model_path}'s evaluator is not implemented"
+    if args.fw == "ov":
+        evaluator = DeepseekOVEvaluator(
+            choices=choices,
+            model_path=args.model_path,
+            device=args.device,
+            qtype=args.qtype
+        )        
 
-    if model_family == "llama":
-        evaluator = LlamaEvaluator(
+    if args.fw == "ipex":
+        evaluator = DeepseekIPEXEvaluator(
             choices=choices,
             model_path=args.model_path,
             device=args.device,
             qtype=args.qtype
         )
-    elif model_family == "qwen":
-        evaluator = QwenEvaluator(
-            choices=choices,
-            model_path=args.model_path,
-            device=args.device,
-            qtype=args.qtype
-        )
-    elif model_family == "chatglm":
-        evaluator = ChatGLMEvaluator(
+    elif args.fw == "ollama":
+        evaluator = DeepseekOllamaEvaluator(
             choices=choices,
             model_path=args.model_path,
             device=args.device,
             qtype=args.qtype
         )
     else:
-        invalidInputError(
-            False,
+        print(
             "Invalid model_family, currently support llama, qwen, and chatglm only.")
     main(args, evaluator=evaluator)
