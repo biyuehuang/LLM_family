@@ -19,3 +19,15 @@ convert model
 
 INT4
 ```
+optimum-cli export openvino --model ../DeepSeek-R1-Distill-Llama-8B --task text-generation-with-past --weight-format int4 --sym --group-size 128 --ratio 1 DeepSeek-R1-Distill-Llama-8B/INT4_compressed_weights
+```
+
+INT8
+```
+optimum-cli export openvino --model ../DeepSeek-R1-Distill-Llama-8B --task text-generation-with-past --weight-format int8 DeepSeek-R1-Distill-Llama-8B\INT8_compressed_weights
+```
+
+FP16
+```
+optimum-cli export openvino --model ../DeepSeek-R1-Distill-Llama-8B --task text-generation-with-past --weight-format fp16 DeepSeek-R1-Distill-Llama-8B\FP16
+```
