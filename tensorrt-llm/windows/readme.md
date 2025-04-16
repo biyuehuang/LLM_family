@@ -67,41 +67,56 @@ python ../run.py --input_text "你好，请问你叫什么？" --max_output_len=
 ```
 cd C:\Users\i\Documents\NV\TensorRT-LLM-0.17.0\benchmarks\python
 
-python benchmark.py -m dec --engine_dir C:/Users/i/Documents/NV/TensorRT-LLM-0.17.0/examples/qwen/trt_engines-DS_1-5B_1gpu_fp16_wq_int4 --batch_size "1" --input_output_len "32,512;1024,512" --quantization int4_weight_only --gpu_weights_percent 1
+python benchmark.py -m dec --engine_dir C:/Users/i/Documents/NV/TensorRT-LLM-0.17.0/examples/qwen/trt_engines-DS_1-5B_1gpu_fp16_wq_int4 --batch_size "1" --input_output_len "32,1;32,512;1024,1;1024,512" --quantization int4_weight_only --gpu_weights_percent 1
+```
+```
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_1-5B_1gpu_fp16_wq_int4 world_size 1 num_heads 12 num_kv_heads 2 num_layers 28 hidden_size 1536 vocab_size 151936 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 1 gpu_peak_mem(gb) 6.278 build_time(s) None tokens_per_sec 101.3 percentile95(ms) 11.656 percentile99(ms) 12.547 latency(ms) 9.872 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 0.029 total_generated_tokens 0.0 generation_tokens_per_second 0.0
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_1-5B_1gpu_fp16_wq_int4 world_size 1 num_heads 12 num_kv_heads 2 num_layers 28 hidden_size 1536 vocab_size 151936 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 512 gpu_peak_mem(gb) 6.28 build_time(s) None tokens_per_sec 144.68 percentile95(ms) 3667.135 percentile99(ms) 3667.135 latency(ms) 3538.792 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 3525.417 total_generated_tokens 511.0 generation_tokens_per_second 144.947
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_1-5B_1gpu_fp16_wq_int4 world_size 1 num_heads 12 num_kv_heads 2 num_layers 28 hidden_size 1536 vocab_size 151936 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 1 gpu_peak_mem(gb) 6.29 build_time(s) None tokens_per_sec 13.47 percentile95(ms) 75.505 percentile99(ms) 76.35 latency(ms) 74.231 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 0.049 total_generated_tokens 0.0 generation_tokens_per_second 0.0
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_1-5B_1gpu_fp16_wq_int4 world_size 1 num_heads 12 num_kv_heads 2 num_layers 28 hidden_size 1536 vocab_size 151936 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 512 gpu_peak_mem(gb) 6.301 build_time(s) None tokens_per_sec 135.8 percentile95(ms) 3845.297 percentile99(ms) 3845.297 latency(ms) 3770.31 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 3695.573 total_generated_tokens 511.0 generation_tokens_per_second 138.274
 
-[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
-Allocated 921.51 MiB for execution context memory.
-C:\Users\i\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nested\__init__.py:220: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\aten\src\ATen\NestedTensorImpl.cpp:180.)
-  return _nested.nested_tensor(
-[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
-[BENCHMARK] engine_dir trt_engines-1gpu_fp16_wq_int4 world_size 1 num_heads 12 num_kv_heads 2 num_layers 28 hidden_size 1536 vocab_size 151936 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 512 gpu_peak_mem(gb) 6.276 build_time(s) None tokens_per_sec 143.72 percentile95(ms) 3652.57 percentile99(ms) 3652.57 latency(ms) 3562.471 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 3549.948 total_generated_tokens 511.0 generation_tokens_per_second 143.946
-[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
-[BENCHMARK] engine_dir trt_engines-1gpu_fp16_wq_int4 world_size 1 num_heads 12 num_kv_heads 2 num_layers 28 hidden_size 1536 vocab_size 151936 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 512 gpu_peak_mem(gb) 6.301 build_time(s) None tokens_per_sec 135.53 percentile95(ms) 3890.11 percentile99(ms) 3890.11 latency(ms) 3777.733 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 3703.125 total_generated_tokens 511.0 generation_tokens_per_second 137.992
+```
 
+```
+python benchmark.py -m dec --engine_dir C:/Users/i/Documents/NV/TensorRT-LLM-0.17.0/examples/qwen/trt_engines-DS_7B_1gpu_fp16_wq_int4 --batch_size "1" --input_output_len "32,1;32,512;1024,1;1024,512" --quantization int4_weight_only --gpu_weights_percent 1
+```
 
-python benchmark.py -m dec --engine_dir C:/Users/i/Documents/NV/TensorRT-LLM-0.17.0/examples/qwen/trt_engines-DS_7B_1gpu_fp16_wq_int4 --batch_size "1" --input_output_len "32,512;1024,512" --quantization int4_weight_only --gpu_weights_percent 1
-
+```
 [TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
-Allocated 1298.01 MiB for execution context memory.
-C:\Users\i\AppData\Local\Programs\Python\Python310\lib\site-packages\torch\nested\__init__.py:220: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\builder\windows\pytorch\aten\src\ATen\NestedTensorImpl.cpp:180.)
-  return _nested.nested_tensor(
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_fp16_wq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 1 gpu_peak_mem(gb) 10.264 build_time(s) None tokens_per_sec 42.68 percentile95(ms) 24.62 percentile99(ms) 25.499 latency(ms) 23.43 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 0.035 total_generated_tokens 0.0 generation_tokens_per_second 0.0
 [TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
-[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_fp16_wq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 512 gpu_peak_mem(gb) 10.276 build_time(s) None tokens_per_sec 51.94 percentile95(ms) 9913.32 percentile99(ms) 9913.32 latency(ms) 9857.072 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 9832.157 total_generated_tokens 511.0 generation_tokens_per_second 51.972
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_fp16_wq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 512 gpu_peak_mem(gb) 10.276 build_time(s) None tokens_per_sec 52.03 percentile95(ms) 9877.819 percentile99(ms) 9877.819 latency(ms) 9841.049 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 9815.935 total_generated_tokens 511.0 generation_tokens_per_second 52.058
 [TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
-[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_fp16_wq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 512 gpu_peak_mem(gb) 10.327 build_time(s) None tokens_per_sec 49.87 percentile95(ms) 10299.454 percentile99(ms) 10299.454 latency(ms) 10265.886 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 9948.403 total_generated_tokens 511.0 generation_tokens_per_second 51.365
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_fp16_wq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 1 gpu_peak_mem(gb) 10.303 build_time(s) None tokens_per_sec 3.14 percentile95(ms) 319.098 percentile99(ms) 319.65 latency(ms) 318.066 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 0.047 total_generated_tokens 0.0 generation_tokens_per_second 0.0
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_fp16_wq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 512 gpu_peak_mem(gb) 10.327 build_time(s) None tokens_per_sec 50.04 percentile95(ms) 10288.028 percentile99(ms) 10288.028 latency(ms) 10231.917 compute_cap sm89 quantization QuantMode.INT4_WEIGHTS generation_time(ms) 9913.705 total_generated_tokens 511.0 generation_tokens_per_second 51.545
 ```
 
 ========== GPTQ INT4
 ```
 modelscope download --model tclf90/deepseek-r1-distill-qwen-7b-gptq-int4 --local_dir ./deepseek-r1-distill-qwen-7b-gptq-int4
 
-cd C:\Users\i\Documents\NV\TensorRT-LLM-0.17.0\examples\qwen
+cd C:\Users\intel\Documents\NV\TensorRT-LLM-0.17.0\examples\qwen
 
-python convert_checkpoint.py --model_dir C:/Users/i/Documents/NV/deepseek-r1-distill-qwen-7b-gptq-int4 --output_dir ./tllm_checkpoint_DS_7B_1gpu_gptq_int4 --dtype float16 --use_weight_only --weight_only_precision int4_gptq --per_group
+python convert_checkpoint.py --model_dir C:/Users/intel/Documents/NV/deepseek-r1-distill-qwen-7b-gptq-int4 --output_dir ./tllm_checkpoint_DS_7B_1gpu_gptq_int4 --dtype float16 --use_weight_only --weight_only_precision int4_gptq --per_group
 
 trtllm-build --checkpoint_dir ./tllm_checkpoint_DS_7B_1gpu_gptq_int4 --output_dir ./trt_engines-DS_7B_1gpu_gptq_int4 --gemm_plugin float16
 
-cd C:\Users\i\Documents\NV\TensorRT-LLM-0.17.0\benchmarks\python
+cd C:\Users\intel\Documents\NV\TensorRT-LLM-0.17.0\benchmarks\python
 
-python benchmark.py -m dec --engine_dir trt_engines-DS_7B_1gpu_gptq_int4 --batch_size "1" --input_output_len "32,512;1024,512" --quantization int4_weight_only --gpu_weights_percent 1
+python benchmark.py -m dec --engine_dir C:/Users/intel/Documents/NV/TensorRT-LLM-0.17.0/examples/qwen/trt_engines-DS_7B_1gpu_gptq_int4 --batch_size "1" --input_output_len "32,1;32,512;1024,1;1024,512" --quantization int4_weight_only_gptq --gpu_weights_percent 1
+```
+```
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_gptq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 1 gpu_peak_mem(gb) 10.356 build_time(s) None tokens_per_sec 42.22 percentile95(ms) 24.532 percentile99(ms) 25.325 latency(ms) 23.686 compute_cap sm89 quantization QuantMode.PER_GROUP|INT4_WEIGHTS generation_time(ms) 0.039 total_generated_tokens 0.0 generation_tokens_per_second 0.0
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_gptq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 32 output_length 512 gpu_peak_mem(gb) 10.368 build_time(s) None tokens_per_sec 50.01 percentile95(ms) 10305.768 percentile99(ms) 10305.768 latency(ms) 10238.071 compute_cap sm89 quantization QuantMode.PER_GROUP|INT4_WEIGHTS generation_time(ms) 10213.736 total_generated_tokens 511.0 generation_tokens_per_second 50.031
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_gptq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 1 gpu_peak_mem(gb) 10.395 build_time(s) None tokens_per_sec 3.09 percentile95(ms) 324.223 percentile99(ms) 325.163 latency(ms) 323.13 compute_cap sm89 quantization QuantMode.PER_GROUP|INT4_WEIGHTS generation_time(ms) 0.047 total_generated_tokens 0.0 generation_tokens_per_second 0.0
+[TensorRT-LLM] TensorRT-LLM version: 0.17.0.post1
+[BENCHMARK] engine_dir trt_engines-DS_7B_1gpu_gptq_int4 world_size 1 num_heads 28 num_kv_heads 4 num_layers 28 hidden_size 3584 vocab_size 152064 precision float16 batch_size 1 gpu_weights_percent 1.0 input_length 1024 output_length 512 gpu_peak_mem(gb) 10.419 build_time(s) None tokens_per_sec 47.7 percentile95(ms) 10776.559 percentile99(ms) 10776.559 latency(ms) 10733.078 compute_cap sm89 quantization QuantMode.PER_GROUP|INT4_WEIGHTS generation_time(ms) 10410.091 total_generated_tokens 511.0 generation_tokens_per_second 49.087
 ```
