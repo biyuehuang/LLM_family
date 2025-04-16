@@ -61,7 +61,7 @@ trtllm-build --checkpoint_dir ./tllm_checkpoint_DS_1-5B_1gpu_fp16_wq_int4 --outp
 ```
 inference
 ```
-python ../run.py --input_text "你好，请问你叫什么？" --max_output_len=50 --tokenizer_dir C:/Users/i/Documents/NV/DeepSeek-R1-Distill-Qwen-1.5B --engine_dir=./trt_engines-1gpu_fp16_wq_int4/
+python ../run.py --input_text "你好，请问你叫什么？" --max_output_len=50 --tokenizer_dir C:/Users/i/Documents/NV/DeepSeek-R1-Distill-Qwen-1.5B --engine_dir=./trt_engines-DS_1-5B_1gpu_fp16_wq_int4/
 ```
 
 ```
