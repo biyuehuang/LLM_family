@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 pip uninstall -y openvino openvino-genai openvino_tokenizers
 
-pip install --upgrade --pre openvino openvino-tokenizers --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/nightly
+pip install --upgrade --pre openvino openvino-tokenizers openvino-genai --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/nightly
 
 或者
 
