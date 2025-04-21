@@ -12,6 +12,14 @@ pip install -r requirements.txt
 推荐升级OV
 ```
 pip uninstall -y openvino openvino-genai openvino_tokenizers
+
+pip install --upgrade --pre openvino openvino-tokenizers --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/nightly
+
+或者
+
+pip install --pre openvino openvino-tokenizers openvino-genai --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/pre-release
+
+## 指定版本
 pip install --pre openvino==2025.1.0rc2 openvino-tokenizers==2025.1.0.0rc2 openvino-genai==2025.1.0.0rc2 --extra-index-url https://storage.openvinotoolkit.org/simple/wheels/pre-release
 ```
 
