@@ -11,7 +11,7 @@ Download dataset from https://huggingface.co/datasets/anon8231489123/ShareGPT_Vi
 ```
 docker pull intelanalytics/ipex-llm-serving-xpu:2.2.0-b13
 
-docker run -itd --net=host --device=/dev/dri -v /opt:/opt -e no_proxy=localhost,127.0.0.1 --name=arc_vllm_server --shm-size="16g" intelanalytics/ipex-llm-serving-xpu:2.1.0b2
+docker run -itd --net=host --device=/dev/dri -v /home/name/models:/llm/models -e no_proxy=localhost,127.0.0.1 --name=arc_vllm_server --shm-size="16g" intelanalytics/ipex-llm-serving-xpu:2.1.0b2
 
 apt-get install jq
 
