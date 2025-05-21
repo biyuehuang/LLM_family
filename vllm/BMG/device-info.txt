@@ -1,0 +1,22 @@
+$ sudo dmidecode -t baseboard
+
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 3.7.0 present.
+
+Handle 0x0002, DMI type 2, 15 bytes
+Base Board Information
+        Manufacturer: MAXSUN
+        Product Name: MS-iCraft Z890 Pacific
+          
+$ sudo dmidecode -t memory | grep -A16 "Memory Device$" | grep "Speed:"
+        Speed: 4800 MT/s
+        Speed: 4800 MT/s
+        Speed: 4800 MT/s
+        Speed: 4800 MT/s
+
+$ sudo dmidecode -t memory | grep -A16 "Memory Device$" | grep "Size:"
+        Size: 16 GB
+        Size: 16 GB
+        Size: 16 GB
+        Size: 16 GB
