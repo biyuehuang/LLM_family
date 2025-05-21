@@ -1,0 +1,97 @@
+Ubuntu 24.10 desktop official image
+
+https://www.releases.ubuntu.com/releases/24.10/ubuntu-24.10-desktop-amd64.iso
+
+sudo apt install -y flex bison libelf-dev libssl-dev libncurses-dev git make openssh-server pkg-config build-essential debhelper net-tools
+ 
+WORK_DIR=~/multi-arc
+mkdir $WORK_DIR
+ 
+# Install drm-tip kernel
+echo "Install kernel ......"
+cd $WORK_DIR
+wget https://intel.sharepoint.com/:u:/r/sites/iotgiceprcnewsletter/Shared%20Documents/NEXC/multi-arc/BMG_24G_BKC/kernel%20deb/linux-headers-6.15.0-rc2+_6.15.0~rc2-g1e5b5f168ee0-2_amd64.deb?csf=1&web=1&e=BLExQi
+wget https://intel.sharepoint.com/:u:/r/sites/iotgiceprcnewsletter/Shared%20Documents/NEXC/multi-arc/BMG_24G_BKC/kernel%20deb/linux-image-6.15.0-rc2+_6.15.0~rc2-g1e5b5f168ee0-2_amd64.deb?csf=1&web=1&e=QHkJPz
+wget https://intel.sharepoint.com/:u:/r/sites/iotgiceprcnewsletter/Shared%20Documents/NEXC/multi-arc/BMG_24G_BKC/kernel%20deb/linux-libc-dev_6.15.0~rc2-g1e5b5f168ee0-2_amd64.deb?csf=1&web=1&e=9ARhIB
+dpkg -i *.deb
+ 
+# Checkout the version we have validated
+git checkout 1e5b5f168ee053192ea7ec05bfe826f848be7d68
+ 
+# Re-use your default kernel config file. For Ubuntu 24.10, it's 6.8.0-21-generic
+cp /boot/config-6.11.0-21-generic .config
+ 
+# You can change other kernel configurations
+yes "" | make oldconfig && make clean && make -j$(nproc) && sudo make modules_install INSTALL_MOD_STRIP=1 -j$(nproc) && sudo make install
+echo "Install kernel succesfully......"
+ 
+# Install Firmware
+echo "Install GPU firmware ......"
+cd $WORK_DIR
+mkdir firmware && cd firmware
+wget https://gitlab.com/kernel-firmware/linux-firmware/-/raw/main/xe/bmg_guc_70.bin
+wget https://gitlab.com/kernel-firmware/linux-firmware/-/raw/main/xe/bmg_huc.bin
+ 
+zstd -1 bmg_guc_70.bin -o bmg_guc_70.bin.zst
+zstd -1 bmg_huc.bin -o bmg_huc.bin.zst
+sudo cp *.zst /lib/firmware/xe
+sudo update-initramfs -u
+echo "Install GPU firmware successfully ......"
+ 
+echo "Install IGC & Compute-runtime ......"
+sudo apt install ocl-icd-libopencl1=2.3.2-1build1
+cd $WORK_DIR && mkdir igc && cd igc
+wget https://github.com/intel/intel-graphics-compiler/releases/download/v2.8.3/intel-igc-core-2_2.8.3+18762_amd64.deb
+wget https://github.com/intel/intel-graphics-compiler/releases/download/v2.8.3/intel-igc-opencl-2_2.8.3+18762_amd64.deb
+wget https://github.com/intel/intel-graphics-compiler/releases/download/v2.8.3/intel-igc-opencl-devel_2.8.3+18762_amd64.deb
+sudo dpkg -i *.deb
+ 
+cd $WORK_DIR && mkdir compute-runtime && cd compute-runtime
+wget https://github.com/intel/compute-runtime/releases/download/25.09.32961.7/libigdgmm12_22.6.0_amd64.deb
+wget https://github.com/intel/compute-runtime/releases/download/25.09.32961.7/intel-level-zero-gpu-dbgsym_1.6.32961.7_amd64.ddeb
+wget https://github.com/intel/compute-runtime/releases/download/25.09.32961.7/intel-level-zero-gpu_1.6.32961.7_amd64.deb
+wget https://github.com/intel/compute-runtime/releases/download/25.09.32961.7/intel-opencl-icd-dbgsym_25.09.32961.7_amd64.ddeb
+wget https://github.com/intel/compute-runtime/releases/download/25.09.32961.7/intel-opencl-icd_25.09.32961.7_amd64.deb
+sudo dpkg -i *.deb && sudo dpkg -i *.ddeb
+echo "Install IGC & Compute-runtime successfully......"
+ 
+echo "Install tools: oneapi, clinfo, sycl-ls, xpu-manager ......"
+sudo apt install -y clinfo
+cd $WORK_DIR && mkdir tools && cd tools
+# Install sycl-ls
+wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+sudo -E add-apt-repository -y ppa:kobuk-team/intel-graphics
+sudo -E apt update  # Refresh the package list after adding the PPA
+sudo -E apt install -y intel-gsc=0.9.5-0ubuntu1~24.10~ppa1
+sudo -E apt install -y intel-oneapi-base-toolkit=2025.1.0-627 libze1=1.17.42-1
+wget https://wiki.ith.intel.com/download/attachments/4032498612/xpu-smi_3.0.35_20250404.151421.18c261db~u22.04_amd64.deb
+sudo dpkg -i *.deb
+echo "Install tools: oneapi, clinfo, sycl-ls, xpu-manager successfully ......"
+ 
+echo "Disable intel_iommu  ......"
+GRUB_FILE="/etc/default/grub"
+sudo cp "$GRUB_FILE" "${GRUB_FILE}.bak"
+sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash intel_iommu=off"/' "$GRUB_FILE"
+sudo update-grub
+echo "Disable intel_iommu successfully ......"
+ 
+echo "Generate configuration script for best perf of multi-arc solution ......"
+cd $WORK_DIR
+TARGET_SCRIPT="setup_perf.sh"
+cat << 'EOF' > "$TARGET_SCRIPT"
+#!/bin/bash
+gpu_num=`sudo xpu-smi discovery | grep card | wc -l`
+for((i=0; i<$gpu_num; i++)); do
+  echo "Set GPU $i freq to 2400Mhz"
+  sudo xpu-smi config -d $i -t 0 --frequencyrange 2400,2400
+done
+ 
+echo "Set CPU to performance mode"
+echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor && echo 0 | sudo tee /sys/devices/system/cpu/cpu*/power/energy_perf_bias
+EOF
+chmod +x "$TARGET_SCRIPT"
+ 
+echo "Disable GUI"
+sudo systemctl set-default multi-user.target
+sudo sync
