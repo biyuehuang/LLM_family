@@ -33,7 +33,7 @@ sudo xpu-smi dump -m 1,2,18,22,26,31,34
 ```
 docker pull intelanalytics/ipex-llm-serving-xpu:2.2.0-b13
 
-docker run -itd --net=host --device=/dev/dri -v /opt:/opt -e no_proxy=localhost,127.0.0.1 --name=vllm_server_arc --shm-size="16g" intelanalytics/ipex-llm-serving-xpu-vllm-0.5.4-experimental:2.2.0b1
+docker run -itd --net=host --device=/dev/dri -v /home/models:/llm/models -e no_proxy=localhost,127.0.0.1 --name=vllm_server_arc --shm-size="16g" intelanalytics/ipex-llm-serving-xpu-vllm-0.5.4-experimental:2.2.0b1
 
 docker start vllm_server_arc
 
