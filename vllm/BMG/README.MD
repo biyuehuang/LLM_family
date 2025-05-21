@@ -15,6 +15,7 @@ https://docs.docker.com/engine/install/ubuntu/
 如果报错docker: Error response from daemon: Get "https://registry-1.docker.io/v2/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
 
 解决方法
+```
 sudo nano /etc/systemd/system/docker.service.d/http-proxy.conf
 
 [Service]
@@ -22,6 +23,7 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+```
 =============
 
 ## 第三步下载模型
@@ -38,10 +40,11 @@ sudo docker start bmg-test
 sudo docker exec -it bmg-test bash    
                                                                                                                                          
 vim start-vllm-service.sh
-```
+
 MODEL_PATH=${MODEL_PATH:-"/llm/models/DeepSeek-R1-Distill-Qwen-32B"}
 SERVED_MODEL_NAME=${SERVED_MODEL_NAME:-"DeepSeek-R1-Distill-Qwen-32B"}
 TENSOR_PARALLEL_SIZE=${TENSOR_PARALLEL_SIZE:-2}
+```
 ```
 bash start-vllm-service.sh                                                                                                                                          
 INFO:     Started server process [2044]
