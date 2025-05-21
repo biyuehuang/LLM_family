@@ -1,3 +1,5 @@
+这是双卡A770的使用指南
+
 更多更新参考：https://github.com/intel-analytics/ipex-llm/tree/main/docker/llm/serving/xpu/docker#vllm-serving-engine
 
 推荐Ubuntu22.04，kernel 6.8/6.5，需要更新out-of-tree: https://dgpu-docs.intel.com/driver/client/overview.html
