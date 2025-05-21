@@ -38,19 +38,25 @@ run.sh
 sudo docker start bmg-test
 
 sudo docker exec -it bmg-test bash    
-                                                                                                                                         
+```
+修改模型路径，如果是双卡把TENSOR_PARALLEL_SIZE改成2。
+```
 vim start-vllm-service.sh
 
 MODEL_PATH=${MODEL_PATH:-"/llm/models/DeepSeek-R1-Distill-Qwen-32B"}
 SERVED_MODEL_NAME=${SERVED_MODEL_NAME:-"DeepSeek-R1-Distill-Qwen-32B"}
 TENSOR_PARALLEL_SIZE=${TENSOR_PARALLEL_SIZE:-2}
 ```
+第一个terminal窗口运行
 ```
-bash start-vllm-service.sh                                                                                                                                          
+bash start-vllm-service.sh    
+
 INFO:     Started server process [2044]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-                                                                                                                                         
+```
+第二个terminal窗口运行
+```
 python vllm_online_benchmark.py DeepSeek-R1-Distill-Qwen-32B 4   
 ```                                                                                                                                         
 
