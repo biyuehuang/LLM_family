@@ -51,7 +51,7 @@ If use openwebui, add the OpenAI API http://127.0.0.1:8000/v1 in [Admin Panel->S
 ```
 pip install gradio
 
-python gradio_webui.py --model-url http://ip:8000/v1
+python gradio_webui.py --model-url http://127.0.0.1:8000/v1
 ```
 
 
