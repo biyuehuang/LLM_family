@@ -29,7 +29,7 @@ Launch lightweight serving backend, repo-id-or-model-path is the parent director
 Default address is http://ip:8000/v1
 
 ```
-cd Speculative-decode
+cd open-webui
 python lightweight_serving.py --repo-id-or-model-path C:/Users/models
 ```
 
