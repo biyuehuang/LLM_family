@@ -40,8 +40,8 @@ async def main():
     args = parser.parse_args()
     model_path = args.repo_id_or_model_path
 
-    checkpoint = os.path.join(model_path, "Qwen3-32B-int4-ov")
-    assistant_checkpoint = os.path.join(model_path, "qwen3-1.7b-250424\pytorch\ov\FP16")
+    checkpoint = os.path.join(model_path, "DeepSeek-R1-Distill-Qwen-32B-ov")
+    assistant_checkpoint = os.path.join(model_path, "DeepSeek-R1-Distill-Qwen-1.5B-ov")
     local_model = ModelWorker(checkpoint, assistant_checkpoint, device=args.device)
     # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(checkpoint)
