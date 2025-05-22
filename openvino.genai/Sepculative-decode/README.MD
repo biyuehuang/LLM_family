@@ -36,20 +36,22 @@ optimum-cli export openvino --model C:/DeepSeek-R1-Distill-Qwen-32B --weight-for
 
 optimum-cli export openvino --model C:/DeepSeek-R1-Distill-Qwen-1.5B --weight-format int4 --task text-generation-with-past DeepSeek-R1-Distill-Qwen-1.5B-ov
 ```
-## Run
-`lightweight_serving.py` launches the service for the speculative decoding application and provides OpenAI-compatible endpoints (i.e. `/v1/chat/completions` and `/v1/models`).
+
+- `lightweight_serving.py` launches the service for the speculative decoding application and provides OpenAI-compatible endpoints (i.e. `/v1/chat/completions` and `/v1/models`).
 
 
-# Launch lightweight serving backend, repo-id-or-model-path is the parent directory of the two models
-# Default address is http://ip:8000/v1
+Launch lightweight serving backend, repo-id-or-model-path is the parent directory of the two models
+
+Default address is http://ip:8000/v1
 
 ```
 cd Speculative-decode
 python lightweight_serving.py --repo-id-or-model-path C:/Users/models
 ```
-# If use openwebui, add the OpenAI API http://127.0.0.1:8000/v1 in [Admin Panel->Settings->Connection].
 
-# If use gradio webui
+## If use openwebui, add the OpenAI API http://127.0.0.1:8000/v1 in [Admin Panel->Settings->Connection].
+
+## If use gradio webui
 ```
 python gradio_webui.py --model-url http://ip:8000/v1
 ```
