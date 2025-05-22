@@ -13,21 +13,6 @@ pip install optimum-intel[nncf]
 pip install fastapi uvicorn openai
 ```
 
-## If use open-webui as chat frontend
-```
-pip install open-webui
-
-conda activate kai-xpu
-set http_proxy=
-set https_proxy=
-open-webui serve
-```
-
-## If use gradio as chat frontend
-```
-pip install gradio
-```
-
 ## Models
 - `DeepSeek-R1-Distill-Qwen-32B` is around 60G, loading the original model for run-time quantization may out of memory on ARL-H 64G machine. So it is recommended to save the int4 model beforehand.
 - The models used are `DeepSeek-R1-Distill-Qwen-32B-ov` and `DeepSeek-R1-Distill-Qwen-1.5B-ov` under the same directory.
@@ -49,11 +34,28 @@ cd Speculative-decode
 python lightweight_serving.py --repo-id-or-model-path C:/Users/models
 ```
 
-## If use openwebui, add the OpenAI API http://127.0.0.1:8000/v1 in [Admin Panel->Settings->Connection].
-
-## If use gradio webui
+## If use open-webui as chat frontend
 ```
+conda create -n open-webui python=3.10
+
+conda activate open-webui 
+pip install open-webui=0.5.20
+
+set http_proxy=
+set https_proxy=
+open-webui serve
+```
+
+If use openwebui, add the OpenAI API http://127.0.0.1:8000/v1 in [Admin Panel->Settings->Connection].
+
+## If use gradio as chat frontend
+```
+pip install gradio
+
 python gradio_webui.py --model-url http://ip:8000/v1
 ```
+
+
+
 
 
