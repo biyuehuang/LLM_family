@@ -5,7 +5,11 @@
 可以安装打包好的ISO，一步到位：
 http://joez.intel.com:5909/iso/multi-arc
 
-如果想手动安装相关库，可以参考GenerateISO_Image_for_BMG.txt
+如果想手动安装相关库，Ubuntu24.10可以参考GenerateISO_Image_for_BMG.txt
+
+Ubuntu25.04 可以参考run-bmg-env.sh
+
+ Ubuntu 25.04 desktop ISO:  https://releases.ubuntu.com/25.04/ubuntu-25.04-desktop-amd64.iso
 
 ## 第二步联网安装docker
 
