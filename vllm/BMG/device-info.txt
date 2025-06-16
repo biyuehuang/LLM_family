@@ -15,6 +15,16 @@ $ sudo dmidecode -t memory | grep -A16 "Memory Device$" | grep "Speed:"
         Speed: 4800 MT/s
         Speed: 4800 MT/s
 
+$ sudo lshw -short -C memory
+H/W path          Device           Class          Description
+=============================================================
+/0/0                               memory         64KiB BIOS
+/0/18                              memory         192GiB System Memory
+/0/18/0                            memory         48GiB DIMM Synchronous 5600 MHz (0.2 ns)
+/0/18/1                            memory         48GiB DIMM Synchronous 5600 MHz (0.2 ns)
+/0/18/2                            memory         48GiB DIMM Synchronous 5600 MHz (0.2 ns)
+/0/18/3                            memory         48GiB DIMM Synchronous 5600 MHz (0.2 ns)
+
 $ sudo dmidecode -t memory | grep -A16 "Memory Device$" | grep "Size:"
         Size: 16 GB
         Size: 16 GB
