@@ -9,11 +9,16 @@ Base Board Information
         Manufacturer: MAXSUN
         Product Name: MS-iCraft Z890 Pacific
           
-$ sudo dmidecode -t memory | grep -A16 "Memory Device$" | grep "Speed:"
-        Speed: 4800 MT/s
-        Speed: 4800 MT/s
-        Speed: 4800 MT/s
-        Speed: 4800 MT/s
+$ sudo dmidecode -t memory | grep "Speed:"
+        Speed: 5600 MT/s
+        Configured Memory Speed: 5600 MT/s
+        Speed: 5600 MT/s
+        Configured Memory Speed: 5600 MT/s
+        Speed: 5600 MT/s
+        Configured Memory Speed: 5600 MT/s
+        Speed: 5600 MT/s
+        Configured Memory Speed: 5600 MT/s
+$ mbw -n 10 100
 
 $ sudo lshw -short -C memory
 H/W path          Device           Class          Description
