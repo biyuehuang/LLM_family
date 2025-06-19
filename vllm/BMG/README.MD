@@ -69,7 +69,7 @@ INFO:     Application startup complete.
 ```
 python vllm_online_benchmark.py DeepSeek-R1-Distill-Qwen-32B 4   
 ```                                                                                                                                         
-或者服务后，运行benchmark_serving的脚本。本目录的脚本run_benchmark_serving.sh
+或者运行服务后，运行benchmark_serving的脚本。本目录的脚本run_benchmark_serving.sh
 
 ```
 ./run_benchmark_serving.sh
