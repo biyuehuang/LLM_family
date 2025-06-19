@@ -2,12 +2,11 @@
 
 ## 第一步安装ISO
 
-可以安装打包好的ISO，一步到位：
-http://joez.intel.com:5909/iso/multi-arc
+Arc A770可以安装打包好的ISO，一步到位：http://joez.intel.com:5909/iso/multi-arc
 
-如果想手动安装相关库，Ubuntu24.10可以参考GenerateISO_Image_for_BMG.txt
+(option)如果想手动安装相关库，Ubuntu24.10可以参考GenerateISO_Image_for_BMG.txt
 
-Ubuntu25.04 可以参考install-bmg-env.sh
+(推荐)如果想一键安装相关库，Ubuntu25.04 可以直接运行 $sudo ./install-bmg-env.sh
 
  Ubuntu 25.04 desktop ISO:  https://releases.ubuntu.com/25.04/ubuntu-25.04-desktop-amd64.iso
 
@@ -31,19 +30,23 @@ sudo systemctl restart docker
 =============
 
 ## 第三步下载模型
-下载32B模型，把它放在 /home/models
+modelscope或者huggingface下载32B模型，把它放在 /home/models
                                                                                                                                          
-## 第四步
+## 第四步创建容器
+下载本目录的脚本run.sh，注意修改镜像名称，模型路径，容器名称。
+2025/06/09 更新镜像：0.2.0-b4 (for BMG platform)
 ```                                                                                                                                         
-sudo docker pull intelanalytics/ipex-llm-serving-xpu:0.2.0-b2
+sudo docker pull intelanalytics/ipex-llm-serving-xpu:0.2.0-b4
 
-run.sh                                                                                                                                         
+./run.sh                                                                                                                                         
                                                                                                                                          
 sudo docker start bmg-test
 
 sudo docker exec -it bmg-test bash    
 ```
-修改模型路径，如果是双卡把TENSOR_PARALLEL_SIZE改成2。
+创建容器后，默认在 /llm 路径下。
+
+start-vllm-service.sh修改模型路径，如果是双卡把TENSOR_PARALLEL_SIZE改成2。
 ```
 vim start-vllm-service.sh
 
@@ -51,7 +54,9 @@ MODEL_PATH=${MODEL_PATH:-"/llm/models/DeepSeek-R1-Distill-Qwen-32B"}
 SERVED_MODEL_NAME=${SERVED_MODEL_NAME:-"DeepSeek-R1-Distill-Qwen-32B"}
 TENSOR_PARALLEL_SIZE=${TENSOR_PARALLEL_SIZE:-2}
 ```
-第一个terminal窗口运行
+## 第五步运行benchmark测试
+
+第一个terminal窗口运行服务
 ```
 bash start-vllm-service.sh    
 
@@ -59,10 +64,15 @@ INFO:     Started server process [2044]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
-第二个terminal窗口运行
+第二个terminal窗口运行benchmark测试，注意模型名称，4是并发路数。
 ```
 python vllm_online_benchmark.py DeepSeek-R1-Distill-Qwen-32B 4   
 ```                                                                                                                                         
+或者服务后，运行benchmark_serving的脚本
+
+```
+./run_benchmark_serving.sh
+```
 
 ## 附录用xpu-smi查看独显的状态                                                                                                                                         
 ```                                                                                                                                         
