@@ -6,7 +6,7 @@ Arc A770可以安装打包好的ISO，一步到位：http://joez.intel.com:5909/
 
 (option)如果想手动安装相关库，Ubuntu24.10可以参考GenerateISO_Image_for_BMG.txt
 
-(推荐)如果想一键安装相关库，Ubuntu25.04 可以直接运行 $sudo ./install-bmg-env.sh
+(推荐)如果想一键安装相关库，Ubuntu25.04 可以直接运行本目录的脚本 $sudo ./install-bmg-env.sh
 
  Ubuntu 25.04 desktop ISO:  https://releases.ubuntu.com/25.04/ubuntu-25.04-desktop-amd64.iso
 
@@ -69,7 +69,7 @@ INFO:     Application startup complete.
 ```
 python vllm_online_benchmark.py DeepSeek-R1-Distill-Qwen-32B 4   
 ```                                                                                                                                         
-或者服务后，运行benchmark_serving的脚本
+或者服务后，运行benchmark_serving的脚本。本目录的脚本run_benchmark_serving.sh
 
 ```
 ./run_benchmark_serving.sh
