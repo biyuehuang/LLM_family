@@ -77,11 +77,11 @@ python vllm_online_benchmark.py DeepSeek-R1-Distill-Qwen-32B 4
 
 ## 附录用xpu-smi查看独显的状态                                                                                                                                         
 ```                                                                                                                                         
-apt install -y intel-gsc libigsc0 libmetee4 libpciaccess0
+sudo apt install -y intel-gsc libigsc0 libmetee4 libpciaccess0
 
-dpkg -i xpu-smi_3.0.35_20250404.151421.18c261db~u22.04_amd64.deb
+sudo dpkg -i xpu-smi_3.0.35_20250404.151421.18c261db~u22.04_amd64.deb
 
-watch -n 1 xpu-smi stats -d 0
+sudo watch -n 1 xpu-smi stats -d 0
 
-watch -n 1 xpu-smi stats -d 1   
+sudo watch -n 1 xpu-smi stats -d 1   
 ```                                                                                                                                         
