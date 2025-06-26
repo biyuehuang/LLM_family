@@ -60,7 +60,9 @@ TENSOR_PARALLEL_SIZE=${TENSOR_PARALLEL_SIZE:-2}
 #### 第一个terminal窗口运行服务
 ```
 bash start-vllm-service.sh    
-
+```
+等待几分钟，输出信息如下，说明服务已启动成功：
+```
 INFO:     Started server process [2044]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
