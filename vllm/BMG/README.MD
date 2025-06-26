@@ -57,7 +57,7 @@ TENSOR_PARALLEL_SIZE=${TENSOR_PARALLEL_SIZE:-2}
 ```
 ## 第五步运行benchmark测试
 
-第一个terminal窗口运行服务
+#### 第一个terminal窗口运行服务
 ```
 bash start-vllm-service.sh    
 
@@ -65,7 +65,7 @@ INFO:     Started server process [2044]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
-第二个terminal窗口运行benchmark测试，注意模型名称，4是并发路数。
+#### 第二个terminal窗口运行benchmark测试，注意模型名称，4是并发路数。
 ```
 python vllm_online_benchmark.py DeepSeek-R1-Distill-Qwen-32B 4   
 ```   
@@ -112,7 +112,7 @@ P90 next token latency: 81.38692605283755 milliseconds.
 P95 next token latency: 81.40906725293529 milliseconds.
 ```
 
-或者运行服务后，运行benchmark_serving的脚本。本目录的脚本run_benchmark_serving.sh
+#### 或者运行服务后，运行benchmark_serving的脚本。本目录的脚本run_benchmark_serving.sh
 
 ```
 ./run_benchmark_serving.sh
