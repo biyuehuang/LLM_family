@@ -1,5 +1,7 @@
 这是双卡BMG的使用指南
 
+双卡要注意设置 Bios setting: PCIe X16 Lane configuration > Slot1 8x +Slot 2 8x
+
 ## 第一步安装ISO
 
 Arc A770可以安装打包好的ISO，一步到位：http://joez.intel.com:5909/iso/multi-arc
