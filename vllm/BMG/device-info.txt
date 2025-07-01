@@ -1,3 +1,4 @@
+### 查看主板信息
 $ sudo dmidecode -t baseboard
 
 # dmidecode 3.6
@@ -8,7 +9,8 @@ Handle 0x0002, DMI type 2, 15 bytes
 Base Board Information
         Manufacturer: MAXSUN
         Product Name: MS-iCraft Z890 Pacific
-          
+
+### 查看内存频率和容量        
 $ sudo dmidecode -t memory | grep "Speed:"
         Speed: 5600 MT/s
         Configured Memory Speed: 5600 MT/s
@@ -35,3 +37,21 @@ $ sudo dmidecode -t memory | grep -A16 "Memory Device$" | grep "Size:"
         Size: 16 GB
         Size: 16 GB
         Size: 16 GB
+
+### 查看显卡是PCIE Gen x.0
+$ lspci | grep -i "VGA"
+04:00.0 VGA compatible controller: Intel Corporation Device e211
+08:00.0 VGA compatible controller: Intel Corporation Device e211
+80:14.5 Non-VGA unclassified device: Intel Corporation Device 7f2f (rev 10)
+$ sudo lspci -s 08:00.0 -vv | grep -i "LnkCap\|LnkSta"
+                LnkCap: Port #0, Speed 2.5GT/s, Width x1, ASPM L0s L1, Exit Latency L0s <64ns, L1 <1us
+                LnkSta: Speed 2.5GT/s, Width x1
+                LnkCap2: Supported Link Speeds: 2.5GT/s, Crosslink- Retimer- 2Retimers- DRS-
+                LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete- EqualizationPhase1-
+
+
+PCIE Gen5.0 32.0GT/s
+PCIE Gen4.0 16.0GT/s
+PCIE Gen3.0 8.0GT/s
+PCIE Gen2.0 5.0GT/s
+PCIE Gen1.0 2.5GT/s
