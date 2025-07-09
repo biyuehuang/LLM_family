@@ -37,11 +37,13 @@ modelscope或者huggingface下载32B模型，把它放在 /home/models
 ## 第四步创建容器
 下载本目录的脚本run.sh，注意修改镜像名称，模型路径，容器名称。
 
+2025/07/07 更新镜像：0.2.0-b6 (for BMG platform)
+
 2025/06/09 更新镜像：0.2.0-b4 (for BMG platform)
 ```                                                                                                                                         
-sudo docker pull intelanalytics/ipex-llm-serving-xpu:0.2.0-b4
+sudo docker pull intelanalytics/ipex-llm-serving-xpu:0.2.0-b6
 
-./run.sh                                                                                                                                         
+sudo ./run.sh                                                                                                                                         
                                                                                                                                          
 sudo docker start bmg-test
 
