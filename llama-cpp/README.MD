@@ -8,7 +8,7 @@ llama-bench.exe -m model.gguf -ngl 999 -t 16 -p 512 -n 128 --mmap 0
 
 ## 测试二 llama-server多路并发
 
-# up to 4 concurrent requests, each with 4096 max context
+#### up to 4 concurrent requests, each with 4096 max context
 llama-server -m model.gguf -ngl 999 -c 16384 -np 4 
 
 另一个窗口运行
