@@ -1,5 +1,5 @@
 https://github.com/NVIDIA/TensorRT-LLM
-https://nvidia.github.io/TensorRT-LLM/installation/windows.html
+
 https://developer.download.nvidia.cn/compute/machine-learning/tensorrt/10.0.1/tars/TensorRT-10.0.1.6.Linux.x86_64-gnu.cuda-12.4.tar.gz
 
 ### Install
