@@ -55,3 +55,7 @@ PCIE Gen4.0 16.0GT/s
 PCIE Gen3.0 8.0GT/s
 PCIE Gen2.0 5.0GT/s
 PCIE Gen1.0 2.5GT/s
+
+### 切换到多用户
+sudo systemctl set-default multi-user.target
+sudo reboot
