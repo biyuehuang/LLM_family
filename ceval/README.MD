@@ -11,8 +11,11 @@ mv ceval-exam.zip data
 cd data; unzip ceval-exam.zip
 ```
 data
+
 --val
+
 --test
+
 --dev
 
 Step 2: download model
