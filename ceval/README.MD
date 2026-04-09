@@ -51,9 +51,18 @@ framework 3: ollama
 ```
 conda create -n ollama python=3.11
 conda activate ollama
-pip install thefuzz
+pip install thefuzz pandas tqdm requests
 python eval_ollama.py --model_path C:/Users/Lengda/Documents/DeepSeek-R1-Distill-Qwen-14B --eval_type validation --device GPU --eval_data_path ./data --qtype q4km
 ```
 
+framework 4: llama-cpp server
+```
+conda create -n ollama python=3.11
+conda activate ollama
+pip install thefuzz pandas tqdm requests
 
+llama-server -m C:\Qwen3.5-35B-A3B-Q4_K_M.gguf -np 1 -c 2048 -ngl 999 --jinja --port 8080
+
+python eval_ollama.py --model_path C:/Qwen3.5-35B --eval_type validation --device GPU --eval_data_path ./data --qtype q4km
+```
 
