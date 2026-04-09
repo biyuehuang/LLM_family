@@ -3,10 +3,17 @@ run ceval
 Step 1: download dataset
 ```
 wget https://huggingface.co/datasets/ceval/ceval-exam/resolve/main/ceval-exam.zip
+
+## or download from https://www.modelscope.cn/datasets/kiwicoco/ceval-exam-zip/files
+
 mkdir data
 mv ceval-exam.zip data
 cd data; unzip ceval-exam.zip
 ```
+data
+--val
+--test
+--dev
 
 Step 2: download model
 ```
