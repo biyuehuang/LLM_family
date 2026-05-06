@@ -73,6 +73,6 @@ pip install thefuzz pandas tqdm requests
 
 llama-server -m C:\Qwen3.5-35B-A3B-Q4_K_M.gguf -np 1 -c 2048 -ngl 999 --jinja --port 8080
 
-python eval_ollama.py --model_path C:/Qwen3.5-35B --eval_type validation --device GPU --eval_data_path ./data --qtype q4km
+python eval_llama_server.py --model_path C:/Qwen3.5-35B --eval_type validation --device GPU --eval_data_path ./data --qtype q4km
 ```
 
